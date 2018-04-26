@@ -8,7 +8,8 @@ let Game = {
     packetLength : 0,
     tiLength : 0,
 
-    currentWord : "",
+    currentPacket : "",
+    letters : [],
     words : [],
 
     space : false,
@@ -74,31 +75,41 @@ let Game = {
         }
         if(received == false)
         {
-            if(Game.packetLength < -7*Game.tiLength && Game.currentWord.length > 0)
+            if(Game.packetLength < -3*Game.tiLength && Game.currentPacket.length > 0)
             {
-                Game.words.push(Game.currentWord);
-                console.log(Game.currentWord);
-                Game.currentWord = "";
-                console.log(Game.words);
+                Game.letters.push(Morse.getLetter(Game.currentPacket));
+                Game.currentPacket = "";
+                Interface.showWord(Game.letters.join(""));
+            }
+
+            if(Game.packetLength < -7*Game.tiLength && Game.letters.length > 0)
+            {
+                Game.words.push(Game.letters.join(""));
+                Game.letters = [];
+                Interface.showSentence(Game.words.join(" "));
             }
             if(Game.packetLength > 0 && Game.tiLength > 0)
             {
                 if(Math.floor(Game.packetLength*1000) >= Math.floor(Game.tiLength*1000) - 20 && Math.floor(Game.packetLength*1000) <= Math.floor(Game.tiLength*1000) + 20)
                 {
-                    console.log("Ti");
-                    Game.currentWord+="Ti";
+                    Game.currentPacket+="Ti";
+                    Interface.showPacket(Game.currentPacket);
+                    Interface.showLetter(Morse.getLetter(Game.currentPacket));
                 }
                 else if(Math.floor(Game.packetLength*1000) > Math.floor(Game.tiLength*1000) + 20)
                 {
-                    console.log("Ta");
-                    Game.currentWord+="Ta";
+                    Game.currentPacket+="Ta";
+                    Interface.showPacket(Game.currentPacket);
+                    Interface.showLetter(Morse.getLetter(Game.currentPacket));
                 }
             }
-            if(Game.tiLength == 0 && Game.packetLength >= 0)
+            if(Game.tiLength == 0 && Game.packetLength > 0)
             {
                 Game.tiLength = Game.packetLength;
-                Game.taLenght = 2*Game.packetLength;
-                console.log("ti: "+Math.floor(Game.tiLength*1000));
+                Game.taLenght = 3*Game.packetLength;
+                Game.currentPacket+="Ti";
+                Interface.showPacket(Game.currentPacket);
+                Interface.showLetter(Morse.getLetter(Game.currentPacket));
             }
             if(Game.packetLength > 0)
                 Game.packetLength = 0;

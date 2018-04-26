@@ -5,10 +5,67 @@
         <title>GCCO - Télégraphe</title>
         <script src="entity.js"></script>
         <script src="sparckle.js"></script>
+        <script src="morse.js"></script>
+        <script src="interface.js"></script>
         <script src="index.js"></script>
+
+        <style>
+            
+        body{
+        background-color: #24292E;
+        text-align: center;
+        }
+
+        .game 
+{
+        display: inline-block;
+        
+}
+
+        canvas
+        {
+        display: inline-block;
+        }
+
+        div.interface
+        {
+        display: inline-block;
+        vertical-align: top;
+        width: 250px;
+        background-color: #3F4448;
+        padding: 10px;
+        border-radius: 2px;
+        font-size: 20px;
+        font-family: arial, sans-serif;
+        letter-spacing: 1px;
+        text-align: left;
+        }
+
+        div.interface div
+        {
+        color: #8D8571;
+        margin-bottom: 5px;
+        }
+
+        div.interface span 
+        {
+        color: #D5D6D7;
+        }
+        
+        
+        
+        </style>
     </head>
     <body>
-        <canvas id="container" widht="480px" height="480px"></canvas>
+        <div class="game">
+            <canvas id="container" widht="480px" height="480px"></canvas>
+            <div class="interface">
+                <div>Signal courant: <span id="currentPacket">N/A</span></div>
+                <div>Lettre courante: <span id="currentLetter">N/A</span></div>
+                <div>Mot courant: <span id="currentWord">N/A</span></div>
+                <div>Phrase: <span id="sentence">N/A</span></div>
+            </div>
+        </div>
     </body>
 
 </html>

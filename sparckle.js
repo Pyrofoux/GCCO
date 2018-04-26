@@ -18,9 +18,13 @@ class Sparckle extends Entity
         else if(this.x > this.targetX)
             this.x--;
 
-        ctx.fillStyle = "red";
+        this.frame += 0.3;
+
+        ctx.fillStyle = "yellow";
         ctx.lineCap = "round";
-        ctx.fillRect(this.x - this.width/2, this.y-this.height/2,this.width, this.height);
+        let width = this.width + Math.abs(Math.sin(this.frame*0.5) * 4);
+        let height = this.height + Math.abs(Math.sin(this.frame*0.5) * 4);
+        ctx.fillRect(this.x - width/2, this.y-height/2,width, height);
         ctx.stroke();
     }
 }
