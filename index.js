@@ -24,10 +24,12 @@ let Game = {
         Game.tick = setInterval(Game.update, 30);
 
         document.addEventListener("keydown", (evt) => {
+            evt.preventDefault();
             Game.input(evt, "down");
         });
 
         document.addEventListener("keyup", (evt) => {
+            evt.preventDefault();
             Game.input(evt, "up");
         });
     },
