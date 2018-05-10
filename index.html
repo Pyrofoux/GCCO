@@ -9,6 +9,10 @@
         <script src="interface.js"></script>
         <script src="index.js"></script>
 
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
         <style>
             
         body{
@@ -17,10 +21,10 @@
         }
 
         .game 
-{
-        display: inline-block;
-        
-}
+        {
+                display: inline-block;
+                
+        }
 
         canvas
         {
@@ -32,24 +36,42 @@
         display: inline-block;
         vertical-align: top;
         width: 250px;
-        background-color: #3F4448;
-        padding: 10px;
-        border-radius: 2px;
-        font-size: 20px;
-        font-family: arial, sans-serif;
-        letter-spacing: 1px;
-        text-align: left;
         }
 
-        div.interface div
+        div.grey 
+        {
+            padding: 10px;
+            background-color: #3F4448;
+            border-radius: 2px;
+            font-size: 20px;
+            font-family: arial, sans-serif;
+            letter-spacing: 1px;
+            text-align: left;
+        }
+
+        div.grey div, div.grey h2
         {
         color: #8D8571;
         margin-bottom: 5px;
+        margin-top: 0px;
+        }
+
+        div.grey hr
+        {
+            border-color:#8D8571;
         }
 
         div.interface span 
         {
         color: #D5D6D7;
+        }
+
+        div.instructions
+        {
+            max-width: 50%;
+            margin: auto;
+            margin-bottom: 50px;
+            color: #D5D6D7;
         }
         
         
@@ -57,13 +79,51 @@
         </style>
     </head>
     <body>
-        <div class="game">
-            <canvas id="container" widht="480px" height="480px"></canvas>
-            <div class="interface">
-                <div>Signal courant: <span id="currentPacket">N/A</span></div>
-                <div>Lettre courante: <span id="currentLetter">N/A</span></div>
-                <div>Mot courant: <span id="currentWord">N/A</span></div>
-                <div>Phrase: <span id="sentence">N/A</span></div>
+        <nav class="navbar navbar-light bg-light sticky-top mb-4">
+            <a class="navbar-brand" href="#">
+                <img src="pioche.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                GCCO - Télégraphe Morse
+            </a>
+            <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#game">Tables de références</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active" href="#game">Démonstration</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Link</a>
+                    </li>
+            </ul>
+        </nav>
+        <div class="container">
+
+            <div class="game" id="game">
+                <div class="instructions grey mb-4">
+                    <h2>Instructions</h2>
+                    <hr>
+                    <p>
+                        Ci-dessous, se trouve un animation permettant d'émuler le fonctionnement d'un manipulateur de télégraphe Morse. 
+                    </p>
+                    <p>
+                        En appuyant sur la touche espace du clavier, vous pouvez actionner le levier et ainsi envoyer un signal. <br>
+                        La durée de ce signal peut-être modulée en appuyant plus ou moins longtemps sur la touche espace, permettant ainsi d'envoyer des signaux courts, long et des interruptions. 
+                    </p>
+                    <p>
+                        Le premier signal envoyé sert de signal étalon. Sa durée servira de référence pour établir celle d'un signal court (Ti).<br>
+                        Un signal long (Taah, ou Ta) présente une durée équivalente à trois fois celle du signal court (Ti).
+                    </p>
+                    <p>
+                        Pour construire des messages et jouer avec cette démonstration, vous pouvez vous référer à la table et à l'arbre présentés plus haut. 
+                    </p>
+                </div>
+                <canvas id="container" widht="480px" height="480px"></canvas>
+                <div class="interface grey">
+                    <div>Signal courant: <span id="currentPacket">N/A</span></div>
+                    <div>Lettre courante: <span id="currentLetter">N/A</span></div>
+                    <div>Mot courant: <span id="currentWord">N/A</span></div>
+                    <div>Phrase: <span id="sentence">N/A</span></div>
+                </div>
             </div>
         </div>
     </body>

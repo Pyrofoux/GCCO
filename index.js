@@ -107,9 +107,9 @@ let Game = {
             {
                 Game.tiLength = Game.packetLength;
                 Game.taLenght = 3*Game.packetLength;
-                Game.currentPacket+="Ti";
-                Interface.showPacket(Game.currentPacket);
-                Interface.showLetter(Morse.getLetter(Game.currentPacket));
+                //Game.currentPacket+="Ti";
+                //Interface.showPacket(Game.currentPacket);
+                //Interface.showLetter(Morse.getLetter(Game.currentPacket));
             }
             if(Game.packetLength > 0)
                 Game.packetLength = 0;
